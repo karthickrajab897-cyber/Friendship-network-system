@@ -1,0 +1,343 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Friendship Network | Connect Smarter</title>
+    <meta name="description"
+        content="Experience the next generation of social connectivity. Visualize your network in 3D, find perfectly matched friends, and explore connections like never before.">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="static/css/dashboard.css">
+    <link rel="stylesheet" href="static/css/landing.css">
+</head>
+
+<body class="dark-theme">
+    <!-- Particle Background -->
+    <div class="particle-bg" id="particles-js"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-transparent py-3 fixed-top" id="main-nav">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-4 d-flex align-items-center gap-2" href="#">
+                <div class="brand-icon"><i class="fas fa-project-diagram"></i></div>
+                <span class="text-gradient">Friendship Network</span>
+            </a>
+            <div class="d-flex gap-3 align-items-center">
+                <a href="#features" class="nav-link text-muted d-none d-md-inline">Features</a>
+                <a href="#how-it-works" class="nav-link text-muted d-none d-md-inline">How It Works</a>
+                <a href="auth.html#login" class="btn btn-glass rounded-pill px-4 py-2">Login</a>
+                <a href="auth.html#register" class="btn btn-primary rounded-pill px-4 py-2 shadow-lg btn-glow">Join
+                    Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section container text-center">
+            <div class="hero-badge animate-fade-in">
+                <i class="fas fa-sparkles me-2"></i>Next Generation Social Platform
+            </div>
+            <h1 class="display-2 fw-900 text-light mb-4 animate-fade-in-up">
+                Connect With People<br>Through a <span class="text-gradient">Smart Friendship<br>Network</span>
+            </h1>
+            <p class="lead text-muted mx-auto mb-5 animate-fade-in-up delay-1" style="max-width: 680px;">
+                Experience the power of graph-based social connections. Visualize your network in stunning 3D,
+                discover perfectly matched friends using BFS algorithms, and explore connections like never before.
+            </p>
+            <div class="d-flex justify-content-center gap-4 flex-wrap animate-fade-in-up delay-2">
+                <a href="auth.html#register" class="btn btn-lg btn-primary rounded-pill px-5 py-3 shadow-lg btn-glow">
+                    <i class="fas fa-rocket me-2"></i>Get Started Free
+                </a>
+                <a href="#features" class="btn btn-lg btn-glass rounded-pill px-5 py-3">
+                    <i class="fas fa-play-circle me-2"></i>Learn More
+                </a>
+            </div>
+
+            <!-- Floating Stats -->
+            <div class="row g-4 mt-5 pt-4 animate-fade-in-up delay-3">
+                <div class="col-4">
+                    <div class="hero-stat">
+                        <div class="hero-stat-number" data-count="500">0</div>
+                        <div class="hero-stat-label">Active Users</div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="hero-stat">
+                        <div class="hero-stat-number" data-count="1200">0</div>
+                        <div class="hero-stat-label">Connections Made</div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="hero-stat">
+                        <div class="hero-stat-number" data-count="98">0</div>
+                        <div class="hero-stat-label">Match Accuracy %</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="container py-5 mt-5 reveal-section">
+            <div class="text-center mb-5">
+                <div class="section-label"><i class="fas fa-star me-2"></i>Platform Features</div>
+                <h2 class="display-5 fw-bold text-light">Everything You Need to<br><span class="text-gradient">Build
+                        Meaningful Connections</span></h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="feature-card glass-card h-100 p-5 text-center">
+                        <div class="feature-icon-wrap mx-auto mb-4">
+                            <i class="fas fa-cube fa-2x"></i>
+                        </div>
+                        <h4 class="text-light mb-3">3D Visualization</h4>
+                        <p class="text-muted mb-0">Explore your social circle in an interactive 3D space with glowing
+                            nodes and animated connections.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card glass-card h-100 p-5 text-center">
+                        <div class="feature-icon-wrap icon-info mx-auto mb-4">
+                            <i class="fas fa-brain fa-2x"></i>
+                        </div>
+                        <h4 class="text-light mb-3">Smart Matching</h4>
+                        <p class="text-muted mb-0">BFS-powered algorithm suggests friends based on mutual connections,
+                            shared interests, and skills.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card glass-card h-100 p-5 text-center">
+                        <div class="feature-icon-wrap icon-warning mx-auto mb-4">
+                            <i class="fas fa-route fa-2x"></i>
+                        </div>
+                        <h4 class="text-light mb-3">Path Finder</h4>
+                        <p class="text-muted mb-0">Find the shortest connection path between any two users using graph
+                            BFS traversal.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card glass-card h-100 p-5 text-center">
+                        <div class="feature-icon-wrap icon-danger mx-auto mb-4">
+                            <i class="fas fa-shield-alt fa-2x"></i>
+                        </div>
+                        <h4 class="text-light mb-3">Secure Auth</h4>
+                        <p class="text-muted mb-0">Password hashing and session-based authentication to keep your data
+                            safe and secure.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card glass-card h-100 p-5 text-center">
+                        <div class="feature-icon-wrap icon-success mx-auto mb-4">
+                            <i class="fas fa-search fa-2x"></i>
+                        </div>
+                        <h4 class="text-light mb-3">Smart Search</h4>
+                        <p class="text-muted mb-0">Find people by name, interests, skills, or location with powerful
+                            real-time search filters.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card glass-card h-100 p-5 text-center">
+                        <div class="feature-icon-wrap icon-purple mx-auto mb-4">
+                            <i class="fas fa-chart-network fa-2x"></i>
+                        </div>
+                        <h4 class="text-light mb-3">Graph Algorithms</h4>
+                        <p class="text-muted mb-0">Powered by adjacency lists and BFS, the system maps connections
+                            efficiently at scale.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section id="how-it-works" class="container py-5 mt-5 reveal-section">
+            <div class="text-center mb-5">
+                <div class="section-label"><i class="fas fa-cogs me-2"></i>How It Works</div>
+                <h2 class="display-5 fw-bold text-light">Three Simple Steps to<br><span class="text-gradient">Your
+                        Connected World</span></h2>
+            </div>
+            <div class="row g-5">
+                <div class="col-md-4">
+                    <div class="step-card text-center">
+                        <div class="step-number">01</div>
+                        <div class="step-icon"><i class="fas fa-user-plus fa-2x"></i></div>
+                        <h4 class="text-light mt-4 mb-3">Create Your Profile</h4>
+                        <p class="text-muted">Sign up with your interests, skills, and bio. Our system builds your
+                            unique identity in the network.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="step-card text-center">
+                        <div class="step-number">02</div>
+                        <div class="step-icon step-icon-info"><i class="fas fa-network-wired fa-2x"></i></div>
+                        <h4 class="text-light mt-4 mb-3">Build Connections</h4>
+                        <p class="text-muted">Send friend requests, accept connections, and grow your network with smart
+                            AI-powered suggestions.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="step-card text-center">
+                        <div class="step-number">03</div>
+                        <div class="step-icon step-icon-success"><i class="fas fa-globe fa-2x"></i></div>
+                        <h4 class="text-light mt-4 mb-3">Explore in 3D</h4>
+                        <p class="text-muted">Visualize your entire social graph in an interactive 3D space. Discover
+                            hidden connections and paths.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tech Stack -->
+        <section class="container py-5 mt-5 reveal-section">
+            <div class="text-center mb-5">
+                <div class="section-label"><i class="fas fa-laptop-code me-2"></i>Technical Architecture</div>
+                <h2 class="display-5 fw-bold text-light">Built With<br><span class="text-gradient">Modern
+                        Technologies</span></h2>
+            </div>
+            <div class="row g-3 justify-content-center">
+                <div class="col-auto">
+                    <div class="tech-badge"><i class="fab fa-python me-2"></i>Python Flask</div>
+                </div>
+                <div class="col-auto">
+                    <div class="tech-badge"><i class="fas fa-database me-2"></i>SQLite</div>
+                </div>
+                <div class="col-auto">
+                    <div class="tech-badge"><i class="fab fa-html5 me-2"></i>HTML5</div>
+                </div>
+                <div class="col-auto">
+                    <div class="tech-badge"><i class="fab fa-css3-alt me-2"></i>CSS3</div>
+                </div>
+                <div class="col-auto">
+                    <div class="tech-badge"><i class="fab fa-js me-2"></i>JavaScript</div>
+                </div>
+                <div class="col-auto">
+                    <div class="tech-badge"><i class="fab fa-bootstrap me-2"></i>Bootstrap 5</div>
+                </div>
+                <div class="col-auto">
+                    <div class="tech-badge"><i class="fas fa-cube me-2"></i>Three.js / 3D Force Graph</div>
+                </div>
+                <div class="col-auto">
+                    <div class="tech-badge"><i class="fas fa-project-diagram me-2"></i>BFS Algorithm</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="container py-5 mt-5 mb-5 reveal-section">
+            <div class="cta-card glass-card text-center p-5">
+                <h2 class="display-5 fw-bold text-light mb-3">Ready to Map Your<br><span class="text-gradient">Social
+                        Universe?</span></h2>
+                <p class="text-muted mb-4 mx-auto" style="max-width: 500px;">Join the network and visualize your
+                    connections in ways you've never imagined.</p>
+                <a href="auth.html#register" class="btn btn-lg btn-primary rounded-pill px-5 py-3 shadow-lg btn-glow">
+                    <i class="fas fa-rocket me-2"></i>Join the Network
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="container py-5 text-center border-top border-secondary border-opacity-25">
+        <div class="row align-items-center">
+            <div class="col-md-4 text-md-start mb-3 mb-md-0">
+                <span class="text-gradient fw-bold fs-5">Friendship Network</span>
+            </div>
+            <div class="col-md-4">
+                <p class="text-muted small mb-0">&copy; 2026 Friendship Network System<br>Computer Science Project
+                    Presentation</p>
+            </div>
+            <div class="col-md-4 text-md-end">
+                <span class="text-muted small">Built with <i class="fas fa-heart text-danger"></i> using Flask +
+                    Three.js</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Particles.js -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script>
+        // Particle Background
+        particlesJS('particles-js', {
+            "particles": {
+                "number": { "value": 80, "density": { "enable": true, "value_area": 900 } },
+                "color": { "value": ["#3b82f6", "#8b5cf6", "#06b6d4"] },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.4, "random": true },
+                "size": { "value": 3, "random": true },
+                "line_linked": { "enable": true, "distance": 150, "color": "#3b82f6", "opacity": 0.15, "width": 1 },
+                "move": { "enable": true, "speed": 1.5, "direction": "none", "random": true, "straight": false, "out_mode": "out", "bounce": false }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
+                "modes": { "grab": { "distance": 200, "line_linked": { "opacity": 0.4 } } }
+            },
+            "retina_detect": true
+        });
+
+        // Scroll Reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal-section').forEach(el => observer.observe(el));
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('main-nav');
+            if (window.scrollY > 50) {
+                nav.style.background = 'rgba(9, 9, 11, 0.85)';
+                nav.style.backdropFilter = 'blur(20px)';
+                nav.style.borderBottom = '1px solid rgba(255,255,255,0.05)';
+            } else {
+                nav.style.background = 'transparent';
+                nav.style.backdropFilter = 'none';
+                nav.style.borderBottom = 'none';
+            }
+        });
+
+        // Animated counters
+        function animateCounters() {
+            document.querySelectorAll('.hero-stat-number').forEach(el => {
+                const target = parseInt(el.dataset.count);
+                let current = 0;
+                const increment = target / 60;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        el.textContent = target + '+';
+                        clearInterval(timer);
+                    } else {
+                        el.textContent = Math.floor(current) + '+';
+                    }
+                }, 30);
+            });
+        }
+
+        // Start counters when hero is visible
+        const heroObs = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+                animateCounters();
+                heroObs.disconnect();
+            }
+        });
+        heroObs.observe(document.querySelector('.hero-section'));
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                const target = document.querySelector(a.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+    </script>
+</body>
+
+</html>

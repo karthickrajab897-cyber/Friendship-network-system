@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join the Network | Friendship Network</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <style>
+        body {
+            background: #09090b;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', sans-serif;
+            padding: 20px;
+        }
+
+        .auth-wrapper {
+            width: 100%;
+            max-width: 520px;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .auth-card {
+            background: rgba(24, 24, 27, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            padding: 48px 40px;
+        }
+
+        .form-control,
+        .form-select {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+            padding: 14px 16px;
+            border-radius: 14px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: #3b82f6;
+            color: #fff;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+        }
+
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.25);
+        }
+
+        .form-label {
+            color: #a1a1aa;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 8px;
+        }
+
+        .auth-toggle {
+            cursor: pointer;
+            color: #3b82f6;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .auth-toggle:hover {
+            color: #60a5fa;
+            text-decoration: underline !important;
+        }
+
+        .tag-input-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 10px 14px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            min-height: 50px;
+            cursor: text;
+            transition: all 0.3s ease;
+        }
+
+        .tag-input-container:focus-within {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+        }
+
+        .tag-input-container input {
+            background: none;
+            border: none;
+            color: #fff;
+            outline: none;
+            flex: 1;
+            min-width: 100px;
+            font-size: 0.9rem;
+        }
+
+        .tag-input-container input::placeholder {
+            color: rgba(255, 255, 255, 0.25);
+        }
+
+        .tag-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 500;
+            animation: tagIn 0.2s ease-out;
+        }
+
+        .tag-badge-interest {
+            background: rgba(59, 130, 246, 0.15);
+            color: #93c5fd;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .tag-badge-skill {
+            background: rgba(139, 92, 246, 0.15);
+            color: #c4b5fd;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .tag-badge .remove-tag {
+            cursor: pointer;
+            opacity: 0.6;
+            transition: opacity 0.2s;
+            font-size: 0.7rem;
+        }
+
+        .tag-badge .remove-tag:hover {
+            opacity: 1;
+        }
+
+        .alert-auth {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #fca5a5;
+            border-radius: 14px;
+            padding: 14px 18px;
+            font-size: 0.85rem;
+            display: none;
+        }
+
+        .alert-auth.show {
+            display: block;
+            animation: fadeInUp 0.3s ease-out;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            color: #52525b;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 24px 0;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .particle-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes tagIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="particle-bg" id="particles-js"></div>
+
+    <div class="auth-wrapper">
+        <div class="auth-card">
+            <!-- Logo -->
+            <div class="text-center mb-4">
+                <a href="{{ url_for('landing') }}" class="text-decoration-none">
+                    <div class="text-gradient fs-2 fw-bold mb-2">
+                        <i class="fas fa-project-diagram me-2"></i>Friendship Network
+                    </div>
+                </a>
+                <p class="text-muted small" id="auth-subtitle">Welcome back! Sign in to your account</p>
+            </div>
+
+            <!-- Error Alert -->
+            <div class="alert-auth mb-3" id="auth-error">
+                <i class="fas fa-exclamation-circle me-2"></i><span id="error-text"></span>
+            </div>
+
+            <!-- ═══ LOGIN FORM ═══ -->
+            <div id="login-section">
+                <form id="login-form">
+                    <div class="mb-3">
+                        <label class="form-label">Email Address</label>
+                        <input type="email" class="form-control" name="email" required placeholder="name@example.com">
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-control" name="password" required placeholder="••••••••">
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 py-3 rounded-pill fw-bold shadow-lg btn-glow"
+                        id="login-btn">
+                        <i class="fas fa-sign-in-alt me-2"></i>Sign In
+                    </button>
+                    <div class="text-center mt-3">
+                        <small class="text-muted">Forgot your password?
+                            <span class="auth-toggle" onclick="toggleAuth('reset')" style="font-size:0.82rem">Reset it
+                                here</span>
+                        </small>
+                    </div>
+                </form>
+
+                <div class="divider">or</div>
+
+                <div class="text-center">
+                    <p class="text-muted small mb-0">Don't have an account?
+                        <span class="auth-toggle" onclick="toggleAuth('register')">Create Account</span>
+                    </p>
+                </div>
+
+                <div class="mt-4 p-3 rounded-3"
+                    style="background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.2);">
+                    <p class="text-muted small mb-1"><i class="fas fa-info-circle text-primary me-1"></i> <strong
+                            class="text-light">Demo Account:</strong></p>
+                    <p class="text-muted small mb-0">Email: <code>karthick@example.com</code> | Password:
+                        <code>password123</code>
+                    </p>
+                </div>
+            </div>
+
+            <!-- ═══ REGISTER FORM ═══ -->
+            <div id="register-section" style="display: none;">
+                <form id="register-form">
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <label class="form-label">Full Name</label>
+                            <input type="text" class="form-control" name="name" required
+                                placeholder="Enter your full name">
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label">Email Address</label>
+                            <input type="email" class="form-control" name="email" required
+                                placeholder="name@example.com">
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label">Password</label>
+                            <input type="password" class="form-control" name="password" required
+                                placeholder="Min 6 characters" minlength="6">
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label">Bio</label>
+                            <textarea class="form-control" name="bio" rows="2" placeholder="Tell us about yourself..."
+                                style="resize: none;"></textarea>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label">Location</label>
+                            <input type="text" class="form-control" name="location" placeholder="City, Country">
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label">Interests <span class="text-muted fw-normal">(press Enter to
+                                    add)</span></label>
+                            <div class="tag-input-container" id="interests-container">
+                                <input type="text" id="interests-input" placeholder="e.g. Coding, Music, Art">
+                            </div>
+                            <input type="hidden" name="interests" id="interests-hidden">
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label">Skills <span class="text-muted fw-normal">(press Enter to
+                                    add)</span></label>
+                            <div class="tag-input-container" id="skills-container">
+                                <input type="text" id="skills-input" placeholder="e.g. Python, React, Design">
+                            </div>
+                            <input type="hidden" name="skills" id="skills-hidden">
+                        </div>
+                        <div class="col-12 mt-4">
+                            <button type="submit"
+                                class="btn btn-primary w-100 py-3 rounded-pill fw-bold shadow-lg btn-glow"
+                                id="register-btn">
+                                <i class="fas fa-user-plus me-2"></i>Create Account
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="divider">or</div>
+
+                <div class="text-center">
+                    <p class="text-muted small mb-0">Already have an account?
+                        <span class="auth-toggle" onclick="toggleAuth('login')">Sign In</span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- ═══ RESET PASSWORD FORM ═══ -->
+            <div id="reset-section" style="display: none;">
+                <form id="reset-form">
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <div class="p-3 rounded-3 mb-2"
+                                style="background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.25);">
+                                <p class="text-warning small mb-0"><i class="fas fa-info-circle me-2"></i>Enter your
+                                    registered email and choose a new password.</p>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label">Registered Email Address</label>
+                            <input type="email" class="form-control" name="email" required
+                                placeholder="name@example.com">
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label">New Password</label>
+                            <input type="password" class="form-control" name="new_password" required
+                                placeholder="Min 6 characters" minlength="6">
+                        </div>
+                        <div class="col-12 mt-2">
+                            <button type="submit" class="btn btn-warning w-100 py-3 rounded-pill fw-bold shadow-lg"
+                                id="reset-btn" style="color:#000;">
+                                <i class="fas fa-key me-2"></i>Reset Password
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="divider">or</div>
+
+                <div class="text-center">
+                    <p class="text-muted small mb-0">Remember your password?
+                        <span class="auth-toggle" onclick="toggleAuth('login')">Sign In</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Particles.js -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS('particles-js', {
+            "particles": {
+                "number": { "value": 50, "density": { "enable": true, "value_area": 900 } },
+                "color": { "value": "#3b82f6" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.3, "random": true },
+                "size": { "value": 2, "random": true },
+                "line_linked": { "enable": true, "distance": 150, "color": "#3b82f6", "opacity": 0.1, "width": 1 },
+                "move": { "enable": true, "speed": 1, "direction": "none", "random": true }
+            },
+            "interactivity": {
+                "events": { "onhover": { "enable": true, "mode": "grab" }, "resize": true }
+            },
+            "retina_detect": true
+        });
+    </script>
+
+    <script>
+        // ═══ Auth Toggle ═══
+        function toggleAuth(type) {
+            const login = document.getElementById('login-section');
+            const register = document.getElementById('register-section');
+            const reset = document.getElementById('reset-section');
+            const subtitle = document.getElementById('auth-subtitle');
+            hideError();
+
+            login.style.display = 'none';
+            register.style.display = 'none';
+            reset.style.display = 'none';
+
+            if (type === 'register') {
+                register.style.display = 'block';
+                subtitle.innerText = 'Create your account and join the network';
+            } else if (type === 'reset') {
+                reset.style.display = 'block';
+                subtitle.innerText = 'Reset your password';
+            } else {
+                login.style.display = 'block';
+                subtitle.innerText = 'Welcome back! Sign in to your account';
+            }
+        }
+
+        // ═══ Error Handling ═══
+        function showError(msg) {
+            const el = document.getElementById('auth-error');
+            document.getElementById('error-text').innerText = msg;
+            el.classList.add('show');
+        }
+
+        function hideError() {
+            document.getElementById('auth-error').classList.remove('show');
+        }
+
+        // ═══ Tag Input System ═══
+        function setupTagInput(inputId, containerId, hiddenId, cssClass) {
+            const input = document.getElementById(inputId);
+            const container = document.getElementById(containerId);
+            const hidden = document.getElementById(hiddenId);
+            let tags = [];
+
+            container.addEventListener('click', () => input.focus());
+
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ',') {
+                    e.preventDefault();
+                    const val = input.value.trim().replace(/,/g, '');
+                    if (val && !tags.includes(val)) {
+                        tags.push(val);
+                        renderTags();
+                        input.value = '';
+                    }
+                }
+                if (e.key === 'Backspace' && input.value === '' && tags.length > 0) {
+                    tags.pop();
+                    renderTags();
+                }
+            });
+
+            function renderTags() {
+                container.querySelectorAll('.tag-badge').forEach(b => b.remove());
+                tags.forEach((tag, idx) => {
+                    const badge = document.createElement('span');
+                    badge.className = `tag-badge ${cssClass}`;
+                    badge.innerHTML = `${tag} <span class="remove-tag" data-idx="${idx}"><i class="fas fa-times"></i></span>`;
+                    container.insertBefore(badge, input);
+                });
+                hidden.value = tags.join(', ');
+
+                container.querySelectorAll('.remove-tag').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        tags.splice(parseInt(btn.dataset.idx), 1);
+                        renderTags();
+                    });
+                });
+            }
+        }
+
+        setupTagInput('interests-input', 'interests-container', 'interests-hidden', 'tag-badge-interest');
+        setupTagInput('skills-input', 'skills-container', 'skills-hidden', 'tag-badge-skill');
+
+        // ═══ Login Form ═══
+        document.getElementById('login-form').onsubmit = async (e) => {
+            e.preventDefault();
+            hideError();
+            const btn = document.getElementById('login-btn');
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Signing in...';
+            btn.disabled = true;
+
+            try {
+                const formData = new FormData(e.target);
+                const res = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(Object.fromEntries(formData))
+                });
+                const data = await res.json();
+                if (res.ok) {
+                    // Show welcome message with user info before redirect
+                    btn.innerHTML = `<i class="fas fa-check-circle me-2"></i>Welcome back, ${data.name}! (ID: ${data.user_id})`;
+                    btn.classList.remove('btn-primary');
+                    btn.classList.add('btn-success');
+                    setTimeout(() => {
+                        window.location.href = '/dashboard';
+                    }, 1200);
+                } else {
+                    showError(data.error || 'Login failed. Please check your credentials.');
+                    btn.innerHTML = '<i class="fas fa-sign-in-alt me-2"></i>Sign In';
+                    btn.disabled = false;
+                }
+            } catch (err) {
+                showError('Network error. Please ensure the backend server is running on port 5000.');
+                btn.innerHTML = '<i class="fas fa-sign-in-alt me-2"></i>Sign In';
+                btn.disabled = false;
+            }
+        };
+
+        // ═══ Register Form ═══
+        document.getElementById('register-form').onsubmit = async (e) => {
+            e.preventDefault();
+            hideError();
+            const btn = document.getElementById('register-btn');
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Creating account...';
+            btn.disabled = true;
+
+            try {
+                const formData = new FormData(e.target);
+                const payload = Object.fromEntries(formData);
+                const res = await fetch('/api/auth/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const data = await res.json();
+                if (res.ok) {
+                    // Show user ID assigned before redirect
+                    btn.innerHTML = `<i class="fas fa-check-circle me-2"></i>Account Created! Your ID: ${data.user_id}`;
+                    btn.classList.remove('btn-primary');
+                    btn.classList.add('btn-success');
+                    setTimeout(() => {
+                        window.location.href = '/dashboard';
+                    }, 1500);
+                } else {
+                    showError(data.error || 'Registration failed. Please try again.');
+                    btn.innerHTML = '<i class="fas fa-user-plus me-2"></i>Create Account';
+                    btn.disabled = false;
+                }
+            } catch (err) {
+                showError('Network error. Please ensure the backend server is running on port 5000.');
+                btn.innerHTML = '<i class="fas fa-user-plus me-2"></i>Create Account';
+                btn.disabled = false;
+            }
+        };
+
+        // ═══ Reset Password Form ═══
+        document.getElementById('reset-form').onsubmit = async (e) => {
+            e.preventDefault();
+            hideError();
+            const btn = document.getElementById('reset-btn');
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Resetting...';
+            btn.disabled = true;
+
+            try {
+                const formData = new FormData(e.target);
+                const payload = Object.fromEntries(formData);
+                const res = await fetch('/api/auth/reset-password', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const data = await res.json();
+                if (res.ok) {
+                    btn.innerHTML = '<i class="fas fa-check-circle me-2"></i>Password Reset!';
+                    btn.classList.replace('btn-warning', 'btn-success');
+                    btn.style.color = '#fff';
+                    // Show success message then switch to login
+                    const el = document.getElementById('auth-error');
+                    el.style.background = 'rgba(16,185,129,0.1)';
+                    el.style.border = '1px solid rgba(16,185,129,0.3)';
+                    el.style.color = '#6ee7b7';
+                    document.getElementById('error-text').innerText = data.message;
+                    el.classList.add('show');
+                    setTimeout(() => {
+                        // Reset styles and go back to login
+                        el.style = '';
+                        toggleAuth('login');
+                        btn.innerHTML = '<i class="fas fa-key me-2"></i>Reset Password';
+                        btn.classList.replace('btn-success', 'btn-warning');
+                        btn.style.color = '#000';
+                        btn.disabled = false;
+                        e.target.reset();
+                    }, 2500);
+                } else {
+                    showError(data.error || 'Reset failed. Please try again.');
+                    btn.innerHTML = '<i class="fas fa-key me-2"></i>Reset Password';
+                    btn.disabled = false;
+                }
+            } catch (err) {
+                showError('Network error. Please ensure the server is running.');
+                btn.innerHTML = '<i class="fas fa-key me-2"></i>Reset Password';
+                btn.disabled = false;
+            }
+        };
+
+        // ═══ Check URL Hash ═══
+        if (window.location.hash === '#register') toggleAuth('register');
+        if (window.location.hash === '#reset') toggleAuth('reset');
+    </script>
+</body>
+
+</html>

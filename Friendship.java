@@ -1,0 +1,44 @@
+package com.sfn.model;
+
+import jakarta.persistence.*;
+import java.time.LocalDateTime;
+
+@Entity
+@Table(name = "friendships")
+public class Friendship {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "user_id_1", nullable = false)
+    private Long userId1;
+
+    @Column(name = "user_id_2", nullable = false)
+    private Long userId2;
+
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
+
+    public Friendship() {
+        this.createdAt = LocalDateTime.now();
+    }
+
+    public Friendship(Long userId1, Long userId2) {
+        this();
+        this.userId1 = Math.min(userId1, userId2);
+        this.userId2 = Math.max(userId1, userId2);
+    }
+
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
+    public Long getUserId1() { return userId1; }
+    public void setUserId1(Long userId1) { this.userId1 = userId1; }
+
+    public Long getUserId2() { return userId2; }
+    public void setUserId2(Long userId2) { this.userId2 = userId2; }
+
+    public LocalDateTime getCreatedAt() { return createdAt; }
+    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
+}

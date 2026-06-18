@@ -1,0 +1,1460 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio | Friendship Network</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #09090b;
+            --card: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.08);
+            --text: #f4f4f5;
+            --muted: #71717a;
+            --accent: #3b82f6;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+        }
+
+        /* Nav */
+        .pf-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 32px;
+            background: rgba(9, 9, 11, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .pf-nav .brand {
+            font-weight: 800;
+            font-size: 1.1rem;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-actions button {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border);
+            color: var(--text);
+            border-radius: 12px;
+            padding: 8px 16px;
+            font-size: 0.82rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+            margin-left: 8px;
+        }
+
+        .nav-actions button:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-actions .btn-primary-nav {
+            background: linear-gradient(135deg, #3b82f6, #6366f1);
+            border: none;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .nav-actions .btn-primary-nav:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        /* Hero */
+        .pf-hero {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .banner {
+            height: 200px;
+            background: linear-gradient(135deg, #1e3a8a 0%, #312e81 50%, #1e1b4b 100%);
+            position: relative;
+        }
+
+        .banner-edit {
+            position: absolute;
+            bottom: 14px;
+            right: 18px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            border-radius: 10px;
+            padding: 6px 14px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: flex-end;
+            gap: 20px;
+            padding: 0 32px;
+            margin-top: -50px;
+        }
+
+        .avatar-wrap {
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .pf-avatar {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            border: 4px solid var(--bg);
+            object-fit: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #fff;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .avatar-upload-btn {
+            position: absolute;
+            bottom: 4px;
+            right: 4px;
+            width: 28px;
+            height: 28px;
+            background: #3b82f6;
+            border-radius: 50%;
+            border: 2px solid var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 0.65rem;
+            color: #fff;
+        }
+
+        .profile-info {
+            padding-bottom: 12px;
+            flex-grow: 1;
+        }
+
+        .profile-info h1 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .profile-info .tagline {
+            color: var(--muted);
+            font-size: 0.88rem;
+        }
+
+        .profile-stats {
+            display: flex;
+            gap: 24px;
+            margin-top: 10px;
+        }
+
+        .pf-stat {
+            text-align: center;
+        }
+
+        .pf-stat .num {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--text);
+        }
+
+        .pf-stat .label {
+            font-size: 0.7rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .profile-cta {
+            padding-bottom: 12px;
+            display: flex;
+            align-items: flex-end;
+            gap: 10px;
+        }
+
+        /* Main layout */
+        .pf-main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 32px 24px;
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 24px;
+        }
+
+        @media (max-width: 768px) {
+            .pf-main {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Cards */
+        .pf-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+
+        .pf-card h3 {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--muted);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            margin: 3px;
+            font-weight: 500;
+        }
+
+        .tag-interest {
+            background: rgba(59, 130, 246, 0.12);
+            color: #93c5fd;
+            border: 1px solid rgba(59, 130, 246, 0.25);
+        }
+
+        .tag-skill {
+            background: rgba(139, 92, 246, 0.12);
+            color: #c4b5fd;
+            border: 1px solid rgba(139, 92, 246, 0.25);
+        }
+
+        /* Section header */
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 18px;
+        }
+
+        .section-header h2 {
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .add-btn {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            color: #60a5fa;
+            border-radius: 10px;
+            padding: 6px 14px;
+            font-size: 0.78rem;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .add-btn:hover {
+            background: rgba(59, 130, 246, 0.2);
+        }
+
+        /* Certificate card */
+        .cert-card {
+            display: flex;
+            gap: 14px;
+            padding: 16px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            margin-bottom: 14px;
+            transition: all 0.25s;
+            position: relative;
+        }
+
+        .cert-card:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(59, 130, 246, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .cert-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .cert-body {
+            flex-grow: 1;
+            min-width: 0;
+        }
+
+        .cert-body h4 {
+            font-size: 0.92rem;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .cert-body .issuer {
+            font-size: 0.78rem;
+            color: #60a5fa;
+            font-weight: 600;
+        }
+
+        .cert-body .date {
+            font-size: 0.72rem;
+            color: var(--muted);
+            margin-top: 2px;
+        }
+
+        .cert-body .desc {
+            font-size: 0.8rem;
+            color: #a1a1aa;
+            margin-top: 6px;
+            line-height: 1.45;
+        }
+
+        .cert-img {
+            width: 70px;
+            height: 70px;
+            border-radius: 10px;
+            object-fit: cover;
+            border: 1px solid var(--border);
+            flex-shrink: 0;
+        }
+
+        .cert-delete {
+            position: absolute;
+            top: 10px;
+            right: 12px;
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            color: #f87171;
+            border-radius: 8px;
+            padding: 4px 8px;
+            font-size: 0.65rem;
+            cursor: pointer;
+            font-family: inherit;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .cert-card:hover .cert-delete {
+            opacity: 1;
+        }
+
+        /* Project card */
+        .proj-card {
+            padding: 16px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            margin-bottom: 14px;
+            transition: all 0.25s;
+            position: relative;
+        }
+
+        .proj-card:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(139, 92, 246, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .proj-title {
+            font-size: 0.92rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .proj-link {
+            color: #60a5fa;
+            font-size: 0.72rem;
+        }
+
+        .proj-desc {
+            font-size: 0.8rem;
+            color: #a1a1aa;
+            line-height: 1.45;
+            margin-bottom: 8px;
+        }
+
+        .proj-delete {
+            position: absolute;
+            top: 10px;
+            right: 12px;
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            color: #f87171;
+            border-radius: 8px;
+            padding: 4px 8px;
+            font-size: 0.65rem;
+            cursor: pointer;
+            font-family: inherit;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .proj-card:hover .proj-delete {
+            opacity: 1;
+        }
+
+        /* Achievement */
+        .ach-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border-radius: 14px;
+            background: rgba(251, 191, 36, 0.05);
+            border: 1px solid rgba(251, 191, 36, 0.15);
+            margin-bottom: 10px;
+            transition: all 0.25s;
+            position: relative;
+        }
+
+        .ach-card:hover {
+            background: rgba(251, 191, 36, 0.09);
+            transform: translateX(4px);
+        }
+
+        .ach-icon {
+            font-size: 1.4rem;
+        }
+
+        .ach-body h5 {
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: #fde68a;
+            margin-bottom: 2px;
+        }
+
+        .ach-body p {
+            font-size: 0.75rem;
+            color: #a1a1aa;
+            margin: 0;
+        }
+
+        .ach-delete {
+            position: absolute;
+            top: 8px;
+            right: 12px;
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            color: #f87171;
+            border-radius: 8px;
+            padding: 4px 8px;
+            font-size: 0.65rem;
+            cursor: pointer;
+            font-family: inherit;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .ach-card:hover .ach-delete {
+            opacity: 1;
+        }
+
+        /* Empty state */
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--muted);
+        }
+
+        .empty-state i {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+            opacity: 0.3;
+            display: block;
+        }
+
+        .empty-state p {
+            font-size: 0.85rem;
+        }
+
+        /* Modal */
+        .pf-modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(6px);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pf-modal-backdrop.open {
+            display: flex;
+        }
+
+        .pf-modal {
+            background: #0e0e14;
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            width: 90%;
+            max-width: 500px;
+            overflow: hidden;
+            animation: modalIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes modalIn {
+            from {
+                opacity: 0;
+                transform: scale(0.88);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .pf-modal-header {
+            padding: 20px 24px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .pf-modal-header h5 {
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .pf-modal-close {
+            background: none;
+            border: none;
+            color: var(--muted);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: color 0.2s;
+            padding: 4px;
+        }
+
+        .pf-modal-close:hover {
+            color: var(--text);
+        }
+
+        .pf-modal-body {
+            padding: 20px 24px;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+
+        .pf-modal-footer {
+            padding: 14px 24px 20px;
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+
+        .pf-input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            color: var(--text);
+            border-radius: 12px;
+            padding: 10px 14px;
+            font-size: 0.85rem;
+            font-family: inherit;
+            outline: none;
+            margin-bottom: 12px;
+            transition: border-color 0.2s;
+        }
+
+        .pf-input:focus {
+            border-color: rgba(59, 130, 246, 0.5);
+        }
+
+        .pf-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--muted);
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .pf-btn {
+            padding: 8px 20px;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 0.83rem;
+            cursor: pointer;
+            font-weight: 600;
+            border: none;
+            transition: all 0.2s;
+        }
+
+        .pf-btn-primary {
+            background: linear-gradient(135deg, #3b82f6, #6366f1);
+            color: #fff;
+        }
+
+        .pf-btn-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        .pf-btn-glass {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+
+        .pf-btn-glass:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Toast */
+        #pf-toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-left: 3px solid #10b981;
+            color: #d1fae5;
+            padding: 12px 20px;
+            border-radius: 14px;
+            font-size: 0.85rem;
+            z-index: 9999;
+            display: none;
+            animation: toastIn 0.3s ease;
+        }
+
+        @keyframes toastIn {
+            from {
+                opacity: 0;
+                transform: translateX(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Progress bar for skills */
+        .skill-bar-wrap {
+            margin-bottom: 10px;
+        }
+
+        .skill-bar-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.78rem;
+            margin-bottom: 4px;
+        }
+
+        .skill-bar-track {
+            height: 5px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .skill-bar-fill {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 1s ease;
+        }
+
+        /* Social links */
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 14px;
+            border-radius: 10px;
+            font-size: 0.78rem;
+            text-decoration: none;
+            margin: 4px;
+            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text);
+            transition: all 0.2s;
+        }
+
+        .social-link:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--text);
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Nav -->
+    <nav class="pf-nav">
+        <span class="brand"><i class="fas fa-project-diagram me-2"></i>Friendship Network</span>
+        <div class="nav-actions">
+            <button onclick="window.location.href='dashboard.html'"><i
+                    class="fas fa-arrow-left me-1"></i>Dashboard</button>
+            <button class="btn-primary-nav" onclick="openEditProfileModal()"><i class="fas fa-edit me-1"></i>Edit
+                Profile</button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <div class="pf-hero">
+        <div class="banner" id="pf-banner"
+            style="background:linear-gradient(135deg,#1e3a8a 0%,#312e81 50%,#1e1b4b 100%);">
+            <button class="banner-edit" onclick="document.getElementById('banner-input').click()"><i
+                    class="fas fa-camera me-1"></i>Change Banner</button>
+            <input type="file" id="banner-input" accept="image/*" style="display:none" onchange="uploadBanner(this)">
+        </div>
+        <div class="profile-section">
+            <div class="avatar-wrap">
+                <div class="pf-avatar" id="pf-avatar-el" onclick="document.getElementById('avatar-input').click()">
+                </div>
+                <div class="avatar-upload-btn" onclick="document.getElementById('avatar-input').click()"><i
+                        class="fas fa-camera"></i></div>
+                <input type="file" id="avatar-input" accept="image/*" style="display:none"
+                    onchange="uploadAvatar(this)">
+            </div>
+            <div class="profile-info">
+                <h1 id="pf-name">Loading...</h1>
+                <p class="tagline" id="pf-tagline">Click Edit Profile to add your tagline</p>
+                <div class="profile-stats">
+                    <div class="pf-stat">
+                        <div class="num" id="pf-certs-count">0</div>
+                        <div class="label">Certificates</div>
+                    </div>
+                    <div class="pf-stat">
+                        <div class="num" id="pf-proj-count">0</div>
+                        <div class="label">Projects</div>
+                    </div>
+                    <div class="pf-stat">
+                        <div class="num" id="pf-friends-count">0</div>
+                        <div class="label">Connections</div>
+                    </div>
+                </div>
+            </div>
+            <div class="profile-cta">
+                <button class="add-btn" onclick="openAddCertModal()"><i class="fas fa-certificate"></i>Add
+                    Certificate</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="pf-main">
+
+        <!-- LEFT COLUMN -->
+        <div>
+            <!-- About -->
+            <div class="pf-card">
+                <h3><i class="fas fa-user" style="color:#60a5fa;"></i>About</h3>
+                <p id="pf-bio" style="font-size:0.88rem;color:#a1a1aa;line-height:1.6;">–</p>
+                <div class="mt-3" id="pf-location-el" style="display:none;">
+                    <span style="font-size:0.8rem;color:#71717a;"><i class="fas fa-map-marker-alt me-1"
+                            style="color:#3b82f6;"></i><span id="pf-loc-text"></span></span>
+                </div>
+            </div>
+
+            <!-- Interests -->
+            <div class="pf-card">
+                <h3><i class="fas fa-heart" style="color:#f43f5e;"></i>Interests</h3>
+                <div id="pf-interests-tags"></div>
+            </div>
+
+            <!-- Skills with bars -->
+            <div class="pf-card">
+                <h3><i class="fas fa-laptop-code" style="color:#a78bfa;"></i>Skills</h3>
+                <div id="pf-skills-bars"></div>
+            </div>
+
+            <!-- Ideas & Vision -->
+            <div class="pf-card" id="pf-ideas-card" style="display:none;">
+                <h3><i class="fas fa-lightbulb" style="color:#fbbf24;"></i>Ideas & Projects</h3>
+                <p id="pf-ideas-text" style="font-size:0.85rem;color:#fde68a;line-height:1.6;"></p>
+            </div>
+            <div class="pf-card" id="pf-vision-card" style="display:none;">
+                <h3><i class="fas fa-rocket" style="color:#10b981;"></i>Vision</h3>
+                <p id="pf-vision-text" style="font-size:0.85rem;color:#6ee7b7;line-height:1.6;"></p>
+            </div>
+
+            <!-- Social Links -->
+            <div class="pf-card">
+                <h3><i class="fas fa-link" style="color:#06b6d4;"></i>Social Links</h3>
+                <div id="pf-social-links">
+                    <p style="font-size:0.8rem;color:var(--muted);">No social links added yet.</p>
+                </div>
+                <button class="add-btn mt-3" onclick="openAddSocialModal()"><i class="fas fa-plus"></i>Add Link</button>
+            </div>
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <div>
+
+            <!-- Certificates -->
+            <div style="margin-bottom:20px;">
+                <div class="section-header">
+                    <h2><i class="fas fa-certificate me-2" style="color:#f59e0b;"></i>Certificates</h2>
+                    <button class="add-btn" onclick="openAddCertModal()"><i class="fas fa-plus"></i>Add
+                        Certificate</button>
+                </div>
+                <div id="certs-list"></div>
+            </div>
+
+            <!-- Projects -->
+            <div style="margin-bottom:20px;">
+                <div class="section-header">
+                    <h2><i class="fas fa-code me-2" style="color:#8b5cf6;"></i>Projects</h2>
+                    <button class="add-btn" onclick="openAddProjectModal()"><i class="fas fa-plus"></i>Add
+                        Project</button>
+                </div>
+                <div id="projects-list"></div>
+            </div>
+
+            <!-- Achievements -->
+            <div>
+                <div class="section-header">
+                    <h2><i class="fas fa-trophy me-2" style="color:#fbbf24;"></i>Achievements</h2>
+                    <button class="add-btn" onclick="openAddAchModal()"><i class="fas fa-plus"></i>Add
+                        Achievement</button>
+                </div>
+                <div id="achievements-list"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ============ MODALS ============ -->
+
+    <!-- Add Certificate Modal -->
+    <div class="pf-modal-backdrop" id="cert-modal">
+        <div class="pf-modal">
+            <div class="pf-modal-header">
+                <h5><i class="fas fa-certificate me-2" style="color:#f59e0b;"></i>Add Certificate</h5>
+                <button class="pf-modal-close" onclick="closeModal('cert-modal')"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="pf-modal-body">
+                <label class="pf-label">Certificate Title *</label>
+                <input class="pf-input" id="cert-title" placeholder="e.g. Machine Learning Foundations">
+                <label class="pf-label">Issued By *</label>
+                <input class="pf-input" id="cert-issuer" placeholder="e.g. Coursera, Google, NPTEL">
+                <label class="pf-label">Date</label>
+                <input class="pf-input" id="cert-date" type="month">
+                <label class="pf-label">Description</label>
+                <textarea class="pf-input" id="cert-desc" rows="2" placeholder="Key skills or topics covered..."
+                    style="resize:none;"></textarea>
+                <label class="pf-label">Attach Certificate Image (optional)</label>
+                <input class="pf-input" id="cert-img-input" type="file" accept="image/*" style="padding:6px;">
+                <div id="cert-img-preview" style="display:none;margin-top:8px;">
+                    <img id="cert-img-el"
+                        style="width:100%;max-height:160px;object-fit:cover;border-radius:12px;border:1px solid var(--border);">
+                </div>
+            </div>
+            <div class="pf-modal-footer">
+                <button class="pf-btn pf-btn-glass" onclick="closeModal('cert-modal')">Cancel</button>
+                <button class="pf-btn pf-btn-primary" onclick="saveCert()"><i class="fas fa-save me-1"></i>Save
+                    Certificate</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Project Modal -->
+    <div class="pf-modal-backdrop" id="project-modal">
+        <div class="pf-modal">
+            <div class="pf-modal-header">
+                <h5><i class="fas fa-code me-2" style="color:#8b5cf6;"></i>Add Project</h5>
+                <button class="pf-modal-close" onclick="closeModal('project-modal')"><i
+                        class="fas fa-times"></i></button>
+            </div>
+            <div class="pf-modal-body">
+                <label class="pf-label">Project Name *</label>
+                <input class="pf-input" id="proj-name" placeholder="e.g. AI Study Bot">
+                <label class="pf-label">GitHub / Live Link</label>
+                <input class="pf-input" id="proj-link" placeholder="https://github.com/...">
+                <label class="pf-label">Tech Stack</label>
+                <input class="pf-input" id="proj-tech" placeholder="Python, React, MongoDB">
+                <label class="pf-label">Description *</label>
+                <textarea class="pf-input" id="proj-desc" rows="3" placeholder="What does this project do?"
+                    style="resize:none;"></textarea>
+            </div>
+            <div class="pf-modal-footer">
+                <button class="pf-btn pf-btn-glass" onclick="closeModal('project-modal')">Cancel</button>
+                <button class="pf-btn pf-btn-primary" onclick="saveProject()"><i class="fas fa-save me-1"></i>Save
+                    Project</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Achievement Modal -->
+    <div class="pf-modal-backdrop" id="ach-modal">
+        <div class="pf-modal">
+            <div class="pf-modal-header">
+                <h5><i class="fas fa-trophy me-2" style="color:#fbbf24;"></i>Add Achievement</h5>
+                <button class="pf-modal-close" onclick="closeModal('ach-modal')"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="pf-modal-body">
+                <label class="pf-label">Achievement Title *</label>
+                <input class="pf-input" id="ach-title" placeholder="e.g. Hackathon Winner 2024">
+                <label class="pf-label">Details</label>
+                <textarea class="pf-input" id="ach-detail" rows="2" placeholder="Brief description..."
+                    style="resize:none;"></textarea>
+                <label class="pf-label">Icon (emoji)</label>
+                <input class="pf-input" id="ach-icon" placeholder="🏆" maxlength="4">
+            </div>
+            <div class="pf-modal-footer">
+                <button class="pf-btn pf-btn-glass" onclick="closeModal('ach-modal')">Cancel</button>
+                <button class="pf-btn pf-btn-primary" onclick="saveAchievement()"><i
+                        class="fas fa-save me-1"></i>Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Social Link Modal -->
+    <div class="pf-modal-backdrop" id="social-modal">
+        <div class="pf-modal">
+            <div class="pf-modal-header">
+                <h5><i class="fas fa-link me-2" style="color:#06b6d4;"></i>Add Social Link</h5>
+                <button class="pf-modal-close" onclick="closeModal('social-modal')"><i
+                        class="fas fa-times"></i></button>
+            </div>
+            <div class="pf-modal-body">
+                <label class="pf-label">Platform</label>
+                <select class="pf-input" id="social-platform" style="cursor:pointer;">
+                    <option value="github">GitHub</option>
+                    <option value="linkedin">LinkedIn</option>
+                    <option value="twitter">Twitter / X</option>
+                    <option value="portfolio">Portfolio Website</option>
+                    <option value="youtube">YouTube</option>
+                    <option value="other">Other</option>
+                </select>
+                <label class="pf-label">URL *</label>
+                <input class="pf-input" id="social-url" placeholder="https://...">
+            </div>
+            <div class="pf-modal-footer">
+                <button class="pf-btn pf-btn-glass" onclick="closeModal('social-modal')">Cancel</button>
+                <button class="pf-btn pf-btn-primary" onclick="saveSocial()">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Profile Modal -->
+    <div class="pf-modal-backdrop" id="edit-profile-modal">
+        <div class="pf-modal">
+            <div class="pf-modal-header">
+                <h5><i class="fas fa-user-edit me-2" style="color:#3b82f6;"></i>Edit Profile</h5>
+                <button class="pf-modal-close" onclick="closeModal('edit-profile-modal')"><i
+                        class="fas fa-times"></i></button>
+            </div>
+            <div class="pf-modal-body">
+                <label class="pf-label">Name</label>
+                <input class="pf-input" id="ep-name">
+                <label class="pf-label">Tagline / Bio</label>
+                <textarea class="pf-input" id="ep-bio" rows="2" style="resize:none;"></textarea>
+                <label class="pf-label">Location</label>
+                <input class="pf-input" id="ep-location" placeholder="City, Country">
+                <label class="pf-label">Interests (comma-separated)</label>
+                <input class="pf-input" id="ep-interests" placeholder="Coding, AI, Art">
+                <label class="pf-label">Skills (comma-separated)</label>
+                <input class="pf-input" id="ep-skills" placeholder="Python, React, TensorFlow">
+                <label class="pf-label">Ideas & Projects</label>
+                <textarea class="pf-input" id="ep-ideas" rows="2" style="resize:none;"
+                    placeholder="Your current big idea..."></textarea>
+                <label class="pf-label">Vision</label>
+                <textarea class="pf-input" id="ep-vision" rows="2" style="resize:none;"
+                    placeholder="Where do you want to go?"></textarea>
+            </div>
+            <div class="pf-modal-footer">
+                <button class="pf-btn pf-btn-glass" onclick="closeModal('edit-profile-modal')">Cancel</button>
+                <button class="pf-btn pf-btn-primary" onclick="saveEditProfile()"><i class="fas fa-save me-1"></i>Save
+                    Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Viewer Modal -->
+    <div class="pf-modal-backdrop" id="image-viewer-modal" style="z-index:9999;"
+        onclick="closeModal('image-viewer-modal')">
+        <div class="pf-modal"
+            style="background:transparent;border:none;max-width:90vw;display:flex;justify-content:center;align-items:center;"
+            onclick="event.stopPropagation()">
+            <img id="image-viewer-img" src=""
+                style="max-width:100%;max-height:85vh;border-radius:12px;box-shadow:0 10px 40px rgba(0,0,0,0.8);cursor:zoom-out;"
+                onclick="closeModal('image-viewer-modal')">
+        </div>
+    </div>
+
+    <div id="pf-toast"></div>
+
+    <script>
+        // Copy of Demo Data for fallback viewing
+        const DEMO_USERS = [
+            { id: 2, name: "Karthick Raja", avatar_color: "#06b6d4", profile_pic: "https://i.pravatar.cc/150?img=12", bio: "AI & Web Dev enthusiast.", location: "Chennai, India", interests: "Coding, AI, Web Dev", skills: "Python, React, TensorFlow", ideas: "AI tutor.", vision: "Democratize education." },
+            { id: 3, name: "Grace Kim", avatar_color: "#10b981", profile_pic: "https://i.pravatar.cc/150?img=47", bio: "NLP Researcher.", location: "Seoul, South Korea", interests: "AI, NLP, Machine Learning", skills: "Python, PyTorch", ideas: "Multilingual AI", vision: "Language never a barrier." },
+            { id: 4, name: "Alice Chen", avatar_color: "#8b5cf6", profile_pic: "https://i.pravatar.cc/150?img=44", bio: "UI/UX Designer.", location: "Taipei, Taiwan", interests: "Design, UI/UX", skills: "Figma, Adobe XD" },
+            { id: 5, name: "Jake Rivera", avatar_color: "#f59e0b", profile_pic: "https://i.pravatar.cc/150?img=33", bio: "Full-stack developer.", location: "Mexico City", interests: "Web Dev, Design", skills: "JavaScript, React, Node.js" },
+            { id: 6, name: "Luna Zhang", avatar_color: "#ec4899", profile_pic: "https://i.pravatar.cc/150?img=25", bio: "Cloud architect.", location: "Beijing, China", interests: "Databases, Cloud", skills: "AWS, Kubernetes, Go" },
+            { id: 13, name: "Karthick Raja", avatar_color: "#06b6d4", profile_pic: "https://i.pravatar.cc/150?img=12", bio: "AI & Web Dev enthusiast.", location: "Chennai", interests: "Coding, AI", skills: "Python, React" },
+            { id: 14, name: "Grace Kim", avatar_color: "#10b981", profile_pic: "https://i.pravatar.cc/150?img=47", bio: "NLP Researcher.", location: "Seoul", interests: "AI, NLP", skills: "Python, PyTorch" },
+            { id: 15, name: "Alice Chen", avatar_color: "#8b5cf6", profile_pic: "https://i.pravatar.cc/150?img=44", bio: "UI/UX Designer.", location: "Taipei", interests: "Design", skills: "Figma" },
+            { id: 16, name: "Jake Rivera", avatar_color: "#f59e0b", profile_pic: "https://i.pravatar.cc/150?img=33", bio: "Full-stack developer.", location: "Mexico City", interests: "Web Dev", skills: "JavaScript, React" },
+            { id: 17, name: "Luna Zhang", avatar_color: "#ec4899", profile_pic: "https://i.pravatar.cc/150?img=25", bio: "Cloud architect.", location: "Beijing", interests: "Databases, Cloud", skills: "AWS, Kubernetes" },
+            { id: 18, name: "Omar Rashid", avatar_color: "#06d6a0", profile_pic: "https://i.pravatar.cc/150?img=52", bio: "Blockchain developer.", location: "Dubai", interests: "Blockchain, Crypto", skills: "Solidity, Ethereum" },
+            { id: 19, name: "Mei Lin", avatar_color: "#ff6b6b", profile_pic: "https://i.pravatar.cc/150?img=41", bio: "ML researcher.", location: "Singapore", interests: "ML, Data Science", skills: "Python, PyTorch" },
+            { id: 20, name: "Ethan Brooks", avatar_color: "#4ecdc4", profile_pic: "https://i.pravatar.cc/150?img=18", bio: "Linux power user.", location: "Toronto, Canada", interests: "Open Source, Linux", skills: "C, Bash, Rust" },
+            { id: 21, name: "Zara Ahmed", avatar_color: "#ffd166", profile_pic: "https://i.pravatar.cc/150?img=29", bio: "AI ethicist.", location: "London, UK", interests: "AI, Ethics", skills: "Research, Writing" },
+            { id: 22, name: "Liam O'Brien", avatar_color: "#c77dff", profile_pic: "https://i.pravatar.cc/150?img=65", bio: "DevOps engineer.", location: "Dublin, Ireland", interests: "DevOps, Cloud", skills: "Kubernetes, AWS" }
+        ];
+
+        let loggedInUser = null;
+        let profileUser = null;
+        let isSelf = true;
+        let portfolio = { certs: [], projects: [], achievements: [], socials: [] };
+        let pendingCertImg = null;
+
+        // ─── Init ───
+        (function init() {
+            const stored = localStorage.getItem('sfn_currentUser');
+            if (!stored) { window.location.href = 'auth.html'; return; }
+            loggedInUser = JSON.parse(stored);
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const targetId = urlParams.get('id');
+
+            if (targetId && parseInt(targetId) !== loggedInUser.id) {
+                isSelf = false;
+                const users = JSON.parse(localStorage.getItem('sfn_users') || '[]');
+                profileUser = users.find(u => u.id === parseInt(targetId));
+
+                // Fallback to DEMO_USERS if not registered
+                if (!profileUser) {
+                    profileUser = DEMO_USERS.find(u => u.id === parseInt(targetId));
+                }
+
+                if (!profileUser) {
+                    alert('User not found!');
+                    window.location.href = 'dashboard.html';
+                    return;
+                }
+
+                // Hide edit buttons
+                const style = document.createElement('style');
+                style.innerHTML = '.add-btn, .banner-edit, .avatar-upload-btn, .nav-actions .btn-primary-nav { display: none !important; }';
+                document.head.appendChild(style);
+
+                // Setup Connect Button
+                const cta = document.querySelector('.profile-cta');
+                if (cta) {
+                    cta.innerHTML = `<button class="pf-btn pf-btn-glass me-2" style="padding:10px 24px;border-radius:24px;" onclick="window.history.back()"><i class="fas fa-arrow-left me-2"></i>Back</button>
+                                     <button class="pf-btn pf-btn-primary" style="padding:10px 24px;border-radius:24px;" onclick="alert('Friend request sent!'); window.history.back();"><i class="fas fa-user-plus me-2"></i>Connect</button>`;
+                }
+            } else {
+                profileUser = loggedInUser;
+            }
+
+            loadPortfolio();
+            renderProfile();
+            renderPortfolio();
+        })();
+
+        function loadPortfolio() {
+            const saved = localStorage.getItem('sfn_portfolio_' + profileUser.id);
+            if (saved) {
+                portfolio = { certs: [], projects: [], achievements: [], socials: [], ...JSON.parse(saved) };
+            } else if (!isSelf) {
+                // Generate fake mock portfolio for demo users so it's not empty!
+                generateMockPortfolio(profileUser);
+            }
+        }
+
+        function generateCertSvg(title, subtitle, color) {
+            const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600"><rect width="100%" height="100%" fill="#09090b"/><rect x="25" y="25" width="750" height="550" fill="none" stroke="${color}" stroke-width="3"/><path d="M 400 130 C 420 130 430 150 430 150 C 430 150 450 160 450 180 C 450 200 430 210 430 210 C 430 210 420 230 400 230 C 380 230 370 210 370 210 C 370 210 350 200 350 180 C 350 160 370 150 370 150 C 370 150 380 130 400 130 Z" fill="${color}" opacity="0.1"/><text x="50%" y="35%" font-family="Inter, sans-serif" font-weight="bold" font-size="46" fill="#f4f4f5" text-anchor="middle">${title}</text><text x="50%" y="50%" font-family="Inter, sans-serif" font-size="28" fill="${color}" text-anchor="middle">${subtitle}</text><text x="50%" y="70%" font-family="Inter, sans-serif" font-size="20" fill="#71717a" text-anchor="middle">Official Certificate of Completion</text><line x1="250" y1="480" x2="350" y2="480" stroke="#71717a" stroke-width="2"/><text x="300" y="510" font-family="Inter, sans-serif" font-size="14" fill="#71717a" text-anchor="middle">Instructor Signature</text><line x1="450" y1="480" x2="550" y2="480" stroke="#71717a" stroke-width="2"/><text x="500" y="510" font-family="Inter, sans-serif" font-size="14" fill="#71717a" text-anchor="middle">Date Issued</text></svg>`;
+            return 'data:image/svg+xml;base64,' + btoa(svg);
+        }
+
+        function generateMockPortfolio(u) {
+            const domain = (u.skills || u.interests || '').toLowerCase();
+            if (domain.includes('ai') || domain.includes('ml')) {
+                portfolio.projects.push({ name: 'Neural Net Visualizer', link: 'https://github.com/test/viz', tech: 'Python, PyTorch, React', desc: 'A real-time visualization tool for convolutional layers.' });
+                portfolio.certs.push({ title: 'Deep Learning Specialization', issuer: 'Coursera', date: '2023-05', desc: 'Completed all 5 courses in the deep learning track.', img: generateCertSvg('Deep Learning', 'Coursera', '#38bdf8') });
+                portfolio.achievements.push({ title: 'Kaggle Master', detail: 'Reached top 5% in computer vision competition.', icon: '🏅' });
+            } else if (domain.includes('web') || domain.includes('react')) {
+                portfolio.projects.push({ name: 'E-commerce Dashboard', link: 'https://demo.example.com', tech: 'React, Node.js, MongoDB', desc: 'Full-stack admin dashboard with real-time analytics.' });
+                portfolio.projects.push({ name: 'Open Source UI Library', link: 'https://github.com/test/ui', tech: 'JavaScript, CSS', desc: 'A lightweight accessible components library.' });
+                portfolio.certs.push({ title: 'AWS Certified Developer', issuer: 'Amazon Web Services', date: '2024-01', desc: 'Associate level certification.', img: generateCertSvg('AWS Developer', 'Amazon Web Services', '#f59e0b') });
+            } else if (domain.includes('cloud') || domain.includes('devops')) {
+                portfolio.projects.push({ name: 'Multi-cloud K8s Deployer', link: 'https://github.com/test/k8s', tech: 'Go, Kubernetes, Terraform', desc: 'CLI tool to deploy across AWS and GCP simultaneously.' });
+                portfolio.certs.push({ title: 'Certified Kubernetes Administrator', issuer: 'CNCF', date: '2023-11', desc: 'Score: 94%', img: generateCertSvg('Kubernetes Admin', 'CNCF', '#8b5cf6') });
+            } else {
+                portfolio.projects.push({ name: 'Personal Portfolio', tech: 'HTML, CSS, JS', desc: 'My digital garden and portfolio website.' });
+                portfolio.certs.push({ title: 'Frontend Fundamentals', issuer: 'FreeCodeCamp', date: '2022-08', desc: 'Basic HTML, CSS, JS certification.', img: generateCertSvg('Frontend Fundamentals', 'FreeCodeCamp', '#10b981') });
+                portfolio.achievements.push({ title: 'Hackathon Finalist', detail: 'Local University Hackathon 2023', icon: '🏆' });
+            }
+            portfolio.socials.push({ platform: 'github', url: 'https://github.com/' });
+        }
+
+        function savePortfolio() {
+            if (!isSelf) return;
+            localStorage.setItem('sfn_portfolio_' + loggedInUser.id, JSON.stringify(portfolio));
+        }
+
+        function renderProfile() {
+            const u = profileUser;
+            const color = u.avatarColor || u.avatar_color || '#3b82f6';
+            document.title = (u.name || 'Portfolio') + ' | Friendship Network';
+
+            // Banner
+            if (u.banner_pic) {
+                document.getElementById('pf-banner').style.background = `url('${u.banner_pic}') center/cover no-repeat`;
+            } else {
+                document.getElementById('pf-banner').style.background = `url('https://picsum.photos/seed/sfn${u.id || Math.random()}/1200/300') center/cover no-repeat`;
+            }
+
+            // Avatar
+            const avatarEl = document.getElementById('pf-avatar-el');
+            avatarEl.style.background = color;
+            avatarEl.style.boxShadow = `0 0 30px ${color}55`;
+            if (u.profile_pic) {
+                avatarEl.innerHTML = `<img src="${u.profile_pic}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">`;
+            } else {
+                avatarEl.textContent = (u.name || '?').split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2);
+            }
+
+            document.getElementById('pf-name').textContent = u.name || 'Unknown User';
+            document.getElementById('pf-tagline').textContent = u.bio || 'No bio yet. Click Edit Profile to add one.';
+            document.getElementById('pf-bio').textContent = u.bio || '–';
+
+            if (u.location) {
+                document.getElementById('pf-location-el').style.display = 'block';
+                document.getElementById('pf-loc-text').textContent = u.location;
+            }
+
+            // Interests
+            const intEl = document.getElementById('pf-interests-tags');
+            if (u.interests) {
+                intEl.innerHTML = u.interests.split(',').filter(Boolean).map(i =>
+                    `<span class="tag tag-interest">${i.trim()}</span>`).join('');
+            } else { intEl.innerHTML = '<p style="font-size:0.8rem;color:var(--muted);">No interests added yet.</p>'; }
+
+            // Skills with progress bars
+            const skEl = document.getElementById('pf-skills-bars');
+            skEl.innerHTML = '';
+            if (u.skills) {
+                const skArr = u.skills.split(',').filter(Boolean);
+                skArr.forEach((sk, i) => {
+                    const pct = [90, 85, 80, 75, 70, 65, 60][i % 7];
+                    const colors = ['#3b82f6', '#8b5cf6', '#10b981', '#f59e0b', '#ec4899', '#06b6d4', '#f97316'];
+                    const c = colors[i % colors.length];
+                    skEl.innerHTML += `
+        <div class="skill-bar-wrap">
+          <div class="skill-bar-label"><span style="font-size:0.8rem;">${sk.trim()}</span><span style="color:var(--muted);font-size:0.72rem;">${pct}%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" id="bar-${i}" style="width:0%;background:${c};"></div></div>
+        </div>`;
+                });
+                setTimeout(() => { skArr.forEach((_, i) => { const b = document.getElementById('bar-' + i); if (b) b.style.width = [90, 85, 80, 75, 70, 65, 60][i % 7] + '%'; }); }, 200);
+            } else { skEl.innerHTML = '<p style="font-size:0.8rem;color:var(--muted);">No skills added yet.</p>'; }
+
+            // Ideas / Vision
+            if (u.ideas) {
+                document.getElementById('pf-ideas-card').style.display = 'block';
+                document.getElementById('pf-ideas-text').textContent = u.ideas;
+            }
+            if (u.vision) {
+                document.getElementById('pf-vision-card').style.display = 'block';
+                document.getElementById('pf-vision-text').textContent = u.vision;
+            }
+
+            // Stats
+            const friends = JSON.parse(localStorage.getItem('sfn_friends_' + profileUser.id) || '[]');
+            document.getElementById('pf-friends-count').textContent = friends.length;
+        }
+
+        function renderPortfolio() {
+            // Certs
+            const certsEl = document.getElementById('certs-list');
+            const certIcons = ['📜', '🎓', '⭐', '🏅', '💡', '🔬', '🌟'];
+            const certColors = ['rgba(245,158,11,0.1)', 'rgba(59,130,246,0.1)', 'rgba(16,185,129,0.1)'];
+            certsEl.innerHTML = portfolio.certs.length === 0 ? `<div class="empty-state"><i class="fas fa-certificate"></i><p>No certificates yet. Add your first one!</p></div>` :
+                portfolio.certs.map((c, i) => `
+      <div class="cert-card">
+        <div class="cert-icon" style="background:${certColors[i % 3]};">${certIcons[i % certIcons.length]}</div>
+        <div class="cert-body">
+          <h4>${c.title}</h4>
+          <div class="issuer"><i class="fas fa-building me-1"></i>${c.issuer}</div>
+          ${c.date ? `<div class="date"><i class="fas fa-calendar-alt me-1"></i>${formatMonth(c.date)}</div>` : ''}
+          ${c.desc ? `<p class="desc">${c.desc}</p>` : ''}
+        </div>
+        ${c.img ? `<img class="cert-img" src="${c.img}" alt="Certificate" style="cursor:zoom-in;" onclick="viewImage('${Math.random().toString(36).substring(7) + "_cert"}', '${c.img}')" id="img_${Math.random().toString(36).substring(7) + "_cert"}">` : ''}
+        ${isSelf ? `<button class="cert-delete" onclick="deleteCert(${i})"><i class="fas fa-trash"></i></button>` : ''}
+      </div>`).join('');
+
+            // Projects
+            const projEl = document.getElementById('projects-list');
+            const techColors = ['#3b82f6', '#8b5cf6', '#10b981', '#f59e0b', '#ec4899', '#06b6d4'];
+            projEl.innerHTML = portfolio.projects.length === 0 ? `<div class="empty-state"><i class="fas fa-code"></i><p>No projects yet. Showcase your work!</p></div>` :
+                portfolio.projects.map((p, i) => `
+      <div class="proj-card">
+        <div class="proj-title">
+          <i class="fas fa-code-branch" style="color:#8b5cf6;"></i>${p.name}
+          ${p.link ? `<a href="${p.link}" target="_blank" class="proj-link ms-auto"><i class="fas fa-external-link-alt me-1"></i>View</a>` : ''}
+        </div>
+        ${p.desc ? `<p class="proj-desc">${p.desc}</p>` : ''}
+        ${p.tech ? `<div>${p.tech.split(',').map((t, ti) => `<span class="tag" style="background:rgba(${hexToRgb(techColors[ti % techColors.length])},0.1);color:${techColors[ti % techColors.length]};border:1px solid rgba(${hexToRgb(techColors[ti % techColors.length])},0.3);">${t.trim()}</span>`).join('')}</div>` : ''}
+        ${isSelf ? `<button class="proj-delete" onclick="deleteProject(${i})"><i class="fas fa-trash"></i></button>` : ''}
+      </div>`).join('');
+
+            // Achievements
+            const achEl = document.getElementById('achievements-list');
+            achEl.innerHTML = portfolio.achievements.length === 0 ? `<div class="empty-state"><i class="fas fa-trophy"></i><p>No achievements yet. Celebrate your wins!</p></div>` :
+                portfolio.achievements.map((a, i) => `
+      <div class="ach-card">
+        <div class="ach-icon">${a.icon || '🏆'}</div>
+        <div class="ach-body"><h5>${a.title}</h5><p>${a.detail || ''}</p></div>
+        ${isSelf ? `<button class="ach-delete" onclick="deleteAch(${i})"><i class="fas fa-trash"></i></button>` : ''}
+      </div>`).join('');
+
+            // Socials
+            const socialEl = document.getElementById('pf-social-links');
+            const socialIcons = { github: 'fab fa-github', linkedin: 'fab fa-linkedin', twitter: 'fab fa-twitter', youtube: 'fab fa-youtube', portfolio: 'fas fa-globe', other: 'fas fa-link' };
+            const socialColors = { github: '#f4f4f5', linkedin: '#60a5fa', twitter: '#38bdf8', youtube: '#f87171', portfolio: '#34d399', other: '#a78bfa' };
+            socialEl.innerHTML = portfolio.socials.length === 0 ? '<p style="font-size:0.8rem;color:var(--muted);">No social links added yet.</p>' :
+                portfolio.socials.map((s, i) =>
+                    `<a href="${s.url}" target="_blank" class="social-link" style="color:${socialColors[s.platform]}; border-color:rgba(255,255,255,0.08);">
+        <i class="${socialIcons[s.platform] || 'fas fa-link'}"></i>${s.platform.charAt(0).toUpperCase() + s.platform.slice(1)}
+       </a>
+       ${isSelf ? `<button onclick="deleteSocial(${i})" style="background:none;border:none;color:#52525b;cursor:pointer;font-size:0.7rem;vertical-align:middle;" title="Remove"><i class="fas fa-times"></i></button>` : ''}`).join('');
+
+            // Update counts
+            document.getElementById('pf-certs-count').textContent = portfolio.certs.length;
+            document.getElementById('pf-proj-count').textContent = portfolio.projects.length;
+        }
+
+        // ─── Cert ───
+        function openAddCertModal() {
+            pendingCertImg = null;
+            ['cert-title', 'cert-issuer', 'cert-date', 'cert-desc'].forEach(id => document.getElementById(id).value = '');
+            document.getElementById('cert-img-preview').style.display = 'none';
+            document.getElementById('cert-img-input').value = '';
+            document.getElementById('cert-img-input').onchange = function () {
+                const file = this.files[0]; if (!file) return;
+                const reader = new FileReader();
+                reader.onload = e => {
+                    pendingCertImg = e.target.result;
+                    document.getElementById('cert-img-el').src = pendingCertImg;
+                    document.getElementById('cert-img-preview').style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            };
+            openModal('cert-modal');
+        }
+
+        function saveCert() {
+            const title = document.getElementById('cert-title').value.trim();
+            const issuer = document.getElementById('cert-issuer').value.trim();
+            if (!title || !issuer) { showToast('Title and Issuer are required!', true); return; }
+            portfolio.certs.unshift({
+                title, issuer,
+                date: document.getElementById('cert-date').value,
+                desc: document.getElementById('cert-desc').value.trim(),
+                img: pendingCertImg || ''
+            });
+            savePortfolio(); renderPortfolio(); closeModal('cert-modal');
+            showToast('✅ Certificate added!');
+        }
+
+        function deleteCert(i) { portfolio.certs.splice(i, 1); savePortfolio(); renderPortfolio(); }
+
+        // ─── Project ───
+        function openAddProjectModal() {
+            ['proj-name', 'proj-link', 'proj-tech', 'proj-desc'].forEach(id => document.getElementById(id).value = '');
+            openModal('project-modal');
+        }
+
+        function saveProject() {
+            const name = document.getElementById('proj-name').value.trim();
+            const desc = document.getElementById('proj-desc').value.trim();
+            if (!name || !desc) { showToast('Name and Description are required!', true); return; }
+            portfolio.projects.unshift({ name, link: document.getElementById('proj-link').value.trim(), tech: document.getElementById('proj-tech').value.trim(), desc });
+            savePortfolio(); renderPortfolio(); closeModal('project-modal');
+            showToast('✅ Project added!');
+        }
+
+        function deleteProject(i) { portfolio.projects.splice(i, 1); savePortfolio(); renderPortfolio(); }
+
+        // ─── Achievement ───
+        function openAddAchModal() {
+            ['ach-title', 'ach-detail', 'ach-icon'].forEach(id => document.getElementById(id).value = '');
+            openModal('ach-modal');
+        }
+
+        function saveAchievement() {
+            const title = document.getElementById('ach-title').value.trim();
+            if (!title) { showToast('Title is required!', true); return; }
+            portfolio.achievements.unshift({ title, detail: document.getElementById('ach-detail').value.trim(), icon: document.getElementById('ach-icon').value.trim() || '🏆' });
+            savePortfolio(); renderPortfolio(); closeModal('ach-modal');
+            showToast('✅ Achievement added!');
+        }
+
+        function deleteAch(i) { portfolio.achievements.splice(i, 1); savePortfolio(); renderPortfolio(); }
+
+        // ─── Social ───
+        function openAddSocialModal() {
+            document.getElementById('social-url').value = '';
+            openModal('social-modal');
+        }
+
+        function saveSocial() {
+            const url = document.getElementById('social-url').value.trim();
+            const platform = document.getElementById('social-platform').value;
+            if (!url) { showToast('URL is required!', true); return; }
+            portfolio.socials.push({ platform, url });
+            savePortfolio(); renderPortfolio(); closeModal('social-modal');
+            showToast('✅ Social link added!');
+        }
+
+        function deleteSocial(i) { portfolio.socials.splice(i, 1); savePortfolio(); renderPortfolio(); }
+
+        // ─── Edit Profile ───
+        function openEditProfileModal() {
+            if (!isSelf) return;
+            const u = profileUser;
+            document.getElementById('ep-name').value = u.name || '';
+            document.getElementById('ep-bio').value = u.bio || '';
+            document.getElementById('ep-location').value = u.location || '';
+            document.getElementById('ep-interests').value = u.interests || '';
+            document.getElementById('ep-skills').value = u.skills || '';
+            document.getElementById('ep-ideas').value = u.ideas || '';
+            document.getElementById('ep-vision').value = u.vision || '';
+            openModal('edit-profile-modal');
+        }
+
+        function saveEditProfile() {
+            const name = document.getElementById('ep-name').value.trim();
+            if (!name) { showToast('Name is required!', true); return; }
+            const updates = {
+                name, bio: document.getElementById('ep-bio').value.trim(),
+                location: document.getElementById('ep-location').value.trim(),
+                interests: document.getElementById('ep-interests').value.trim(),
+                skills: document.getElementById('ep-skills').value.trim(),
+                ideas: document.getElementById('ep-ideas').value.trim(),
+                vision: document.getElementById('ep-vision').value.trim()
+            };
+            loggedInUser = { ...loggedInUser, ...updates };
+            profileUser = loggedInUser;
+            localStorage.setItem('sfn_currentUser', JSON.stringify(loggedInUser));
+            // Also update users array
+            const users = JSON.parse(localStorage.getItem('sfn_users') || '[]');
+            const idx = users.findIndex(u => u.id === loggedInUser.id);
+            if (idx !== -1) { users[idx] = { ...users[idx], ...updates }; localStorage.setItem('sfn_users', JSON.stringify(users)); }
+            closeModal('edit-profile-modal');
+            renderProfile(); showToast('✅ Profile updated!');
+        }
+
+        // ─── Avatar / Banner Upload ───
+        function uploadAvatar(input) {
+            if (!isSelf) return;
+            const file = input.files[0]; if (!file) return;
+            const reader = new FileReader();
+            reader.onload = e => {
+                loggedInUser.profile_pic = e.target.result;
+                profileUser = loggedInUser;
+                localStorage.setItem('sfn_currentUser', JSON.stringify(loggedInUser));
+                const users = JSON.parse(localStorage.getItem('sfn_users') || '[]');
+                const idx = users.findIndex(u => u.id === loggedInUser.id);
+                if (idx !== -1) { users[idx].profile_pic = e.target.result; localStorage.setItem('sfn_users', JSON.stringify(users)); }
+                renderProfile(); showToast('✅ Profile photo updated!');
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function uploadBanner(input) {
+            if (!isSelf) return;
+            const file = input.files[0]; if (!file) return;
+            const reader = new FileReader();
+            reader.onload = e => {
+                loggedInUser.banner_pic = e.target.result;
+                profileUser = loggedInUser;
+                localStorage.setItem('sfn_currentUser', JSON.stringify(loggedInUser));
+                renderProfile(); showToast('✅ Banner updated!');
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // ─── Helpers ───
+        function viewImage(id, src) {
+            document.getElementById('image-viewer-img').src = src;
+            openModal('image-viewer-modal');
+        }
+
+        function openModal(id) { document.getElementById(id).classList.add('open'); }
+        function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+
+        function showToast(msg, isError = false) {
+            const el = document.getElementById('pf-toast');
+            el.textContent = msg;
+            el.style.display = 'block';
+            el.style.borderLeftColor = isError ? '#ef4444' : '#10b981';
+            el.style.color = isError ? '#fca5a5' : '#d1fae5';
+            el.style.background = isError ? 'rgba(239,68,68,0.1)' : 'rgba(16,185,129,0.1)';
+            setTimeout(() => { el.style.display = 'none'; }, 3000);
+        }
+
+        function formatMonth(m) {
+            if (!m) return '';
+            const [y, mo] = m.split('-');
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            return `${months[parseInt(mo) - 1]} ${y}`;
+        }
+
+        function hexToRgb(hex) {
+            try {
+                const r = parseInt(hex.slice(1, 3), 16), g = parseInt(hex.slice(3, 5), 16), b = parseInt(hex.slice(5, 7), 16);
+                return `${r},${g},${b}`;
+            } catch (_) { return '59,130,246'; }
+        }
+
+        // Close modals on backdrop click
+        document.querySelectorAll('.pf-modal-backdrop').forEach(el => {
+            el.addEventListener('click', e => { if (e.target === el) el.classList.remove('open'); });
+        });
+    </script>
+</body>
+
+</html>

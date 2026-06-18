@@ -1,0 +1,365 @@
+/* ═══════════════════════════════════════════════════════════════
+   Friendship Network — Landing Page Styles
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ─── Particle Background ─── */
+.particle-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: #09090b;
+}
+
+/* ─── Navbar ─── */
+#main-nav {
+    transition: all 0.4s ease;
+    z-index: 1000;
+}
+
+.brand-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 0.9rem;
+}
+
+/* ─── Hero Section ─── */
+.hero-section {
+    padding-top: 160px;
+    padding-bottom: 60px;
+    position: relative;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 20px;
+    border-radius: 50px;
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.25);
+    color: #93c5fd;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 28px;
+    letter-spacing: 0.5px;
+}
+
+.fw-900 {
+    font-weight: 900;
+}
+
+.hero-stat {
+    padding: 24px;
+    border-radius: 16px;
+    background: rgba(24, 24, 27, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.hero-stat:hover {
+    transform: translateY(-4px);
+    border-color: rgba(59, 130, 246, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.hero-stat-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #3b82f6, #06b6d4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.2;
+}
+
+.hero-stat-label {
+    font-size: 0.8rem;
+    color: #a1a1aa;
+    font-weight: 500;
+    margin-top: 4px;
+}
+
+/* ─── Section Label ─── */
+.section-label {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 16px;
+    border-radius: 50px;
+    background: rgba(139, 92, 246, 0.1);
+    border: 1px solid rgba(139, 92, 246, 0.25);
+    color: #c4b5fd;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+}
+
+/* ─── Feature Cards ─── */
+.feature-card {
+    cursor: default;
+}
+
+.feature-card:hover {
+    transform: translateY(-8px);
+}
+
+.feature-icon-wrap {
+    width: 72px;
+    height: 72px;
+    border-radius: 20px;
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #3b82f6;
+    transition: all 0.4s ease;
+}
+
+.feature-card:hover .feature-icon-wrap {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+.feature-icon-wrap.icon-info {
+    background: rgba(6, 182, 212, 0.1);
+    border-color: rgba(6, 182, 212, 0.2);
+    color: #06b6d4;
+}
+
+.feature-card:hover .icon-info {
+    box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
+}
+
+.feature-icon-wrap.icon-warning {
+    background: rgba(245, 158, 11, 0.1);
+    border-color: rgba(245, 158, 11, 0.2);
+    color: #f59e0b;
+}
+
+.feature-card:hover .icon-warning {
+    box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+}
+
+.feature-icon-wrap.icon-danger {
+    background: rgba(239, 68, 68, 0.1);
+    border-color: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+}
+
+.feature-card:hover .icon-danger {
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
+}
+
+.feature-icon-wrap.icon-success {
+    background: rgba(16, 185, 129, 0.1);
+    border-color: rgba(16, 185, 129, 0.2);
+    color: #10b981;
+}
+
+.feature-card:hover .icon-success {
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+}
+
+.feature-icon-wrap.icon-purple {
+    background: rgba(139, 92, 246, 0.1);
+    border-color: rgba(139, 92, 246, 0.2);
+    color: #8b5cf6;
+}
+
+.feature-card:hover .icon-purple {
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+}
+
+/* ─── How It Works Steps ─── */
+.step-card {
+    position: relative;
+    padding: 40px 30px;
+}
+
+.step-number {
+    font-size: 5rem;
+    font-weight: 900;
+    color: rgba(59, 130, 246, 0.08);
+    line-height: 1;
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.step-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 24px;
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #3b82f6;
+    margin: 0 auto;
+    transition: all 0.4s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.step-card:hover .step-icon {
+    transform: scale(1.1);
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+}
+
+.step-icon-info {
+    background: rgba(6, 182, 212, 0.1);
+    border-color: rgba(6, 182, 212, 0.2);
+    color: #06b6d4;
+}
+
+.step-card:hover .step-icon-info {
+    box-shadow: 0 0 30px rgba(6, 182, 212, 0.3);
+}
+
+.step-icon-success {
+    background: rgba(16, 185, 129, 0.1);
+    border-color: rgba(16, 185, 129, 0.2);
+    color: #10b981;
+}
+
+.step-card:hover .step-icon-success {
+    box-shadow: 0 0 30px rgba(16, 185, 129, 0.3);
+}
+
+/* ─── Tech Badges ─── */
+.tech-badge {
+    padding: 10px 20px;
+    border-radius: 14px;
+    background: rgba(24, 24, 27, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #a1a1aa;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.tech-badge:hover {
+    border-color: rgba(59, 130, 246, 0.3);
+    color: #f8fafc;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* ─── CTA Card ─── */
+.cta-card {
+    border-radius: 28px;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6, #06b6d4, #3b82f6);
+    background-size: 200% 100%;
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+
+    0%,
+    100% {
+        background-position: 0% 0%;
+    }
+
+    50% {
+        background-position: 100% 0%;
+    }
+}
+
+/* ─── Scroll Reveal ─── */
+.reveal-section {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.reveal-section.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ─── Hero Animations ─── */
+.animate-fade-in {
+    animation: fadeIn 0.8s ease-out both;
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out both;
+}
+
+.animate-fade-in-up.delay-1 {
+    animation-delay: 0.15s;
+}
+
+.animate-fade-in-up.delay-2 {
+    animation-delay: 0.3s;
+}
+
+.animate-fade-in-up.delay-3 {
+    animation-delay: 0.45s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+    .hero-section {
+        padding-top: 120px;
+    }
+
+    .hero-section h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero-stat-number {
+        font-size: 1.8rem;
+    }
+
+    .step-number {
+        font-size: 3rem;
+    }
+}
