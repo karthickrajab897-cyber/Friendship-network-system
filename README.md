@@ -1,5 +1,4 @@
-# Friendship Network System
-
+# Friendship Network System | Graph-Based Social Networking Platform
 ## 📌 Project Overview
 
 Friendship Network System is an intelligent graph-based social networking platform designed to model and analyze user relationships using Data Structures and Algorithms. The system represents users as nodes and friendships as edges within a graph, enabling efficient management of social connections, mutual friend discovery, and recommendation generation.
