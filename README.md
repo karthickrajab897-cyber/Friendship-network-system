@@ -42,18 +42,18 @@ This project demonstrates the practical application of Graph Data Structures, Br
 ### Login Page
 <img width="825" height="1050" alt="login-page png" src="https://github.com/user-attachments/assets/968944c8-146f-405d-9cc0-427c1dc8d150" />
 
-
 ### Dashboard
-![Dashboard](screenshots/dashboard.png)
+<img width="636" height="759" alt="dashboard png" src="https://github.com/user-attachments/assets/0127aa78-574f-457d-861f-9069596a8c43" />
 
 ### Friend Recommendation System
-![Friend Recommendation](screenshots/friend-recommendation.png)
+<img width="363" height="693" alt="friend-recommendation png" src="https://github.com/user-attachments/assets/3dc49cf4-d248-42ab-8f03-63cc2501ceef" />
 
 ### Network Graph Visualization
-![Network Graph](screenshots/network-graph.png)
+<img width="892" height="779" alt="network-graph png" src="https://github.com/user-attachments/assets/f6783e84-d4c4-4ab6-84fd-07f4f88595a2" />
 
 ### Portfolio Page
-![Portfolio](screenshots/portfolio-page.png)
+<img width="1913" height="1076" alt="portfolio-page png" src="https://github.com/user-attachments/assets/f7614741-b795-41f0-b368-c01d42884e6b" />
+
 
 ----
 
