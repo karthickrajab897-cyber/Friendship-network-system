@@ -37,6 +37,24 @@ This project demonstrates the practical application of Graph Data Structures, Br
 - Connection Path Analysis
 
 ---
+## 📸 Project Screenshots
+
+### Login Page
+![Login Page](screenshots/login-page.png)
+
+### Dashboard
+![Dashboard](screenshots/dashboard.png)
+
+### Friend Recommendation System
+![Friend Recommendation](screenshots/friend-recommendation.png)
+
+### Network Graph Visualization
+![Network Graph](screenshots/network-graph.png)
+
+### Portfolio Page
+![Portfolio](screenshots/portfolio-page.png)
+
+----
 
 ## 🛠️ Technologies Used
 
