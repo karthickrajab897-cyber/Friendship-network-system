@@ -40,7 +40,8 @@ This project demonstrates the practical application of Graph Data Structures, Br
 ## 📸 Project Screenshots
 
 ### Login Page
-![Login Page](screenshots/login-page.png)
+<img width="825" height="1050" alt="login-page png" src="https://github.com/user-attachments/assets/968944c8-146f-405d-9cc0-427c1dc8d150" />
+
 
 ### Dashboard
 ![Dashboard](screenshots/dashboard.png)
