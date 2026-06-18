@@ -92,13 +92,13 @@ The system follows a modular architecture consisting of:
 
 ---
 
-## ▶️ How to Run
+# ▶️ How to Run
 
 1. Clone the repository
 2. Install dependencies
 3. Run the Flask application
 
-```bash
+'''bash
 git clone <repository-url>
 cd Friendship-network-system
 pip install -r requirements.txt
@@ -106,7 +106,7 @@ python app.py
 
 ----
 
-## 📊 Applications
+##📊 Applications
 
 - Social Networking Platforms
 - Professional Networking Systems
