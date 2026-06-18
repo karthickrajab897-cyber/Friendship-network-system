@@ -117,21 +117,19 @@ Through this project, the following concepts were implemented and demonstrated:
 
 ## 🔮 Future Enhancements
 
-- AI-Powered Friend Recommendation Engine
-- Real-Time Messaging System
-- Mobile Application Support
-- Advanced Network Analytics
-- Cloud Database Integration
-- User Activity Insights
-- Enhanced Security Features
-
+- Machine Learning powered friend recommendations
+- Real-time messaging and notifications
+- Cloud database integration
+- Mobile-responsive application
+- Advanced social network analytics
+- User activity tracking dashboard
 ---
 
 ## 👨‍💻 Developed By
 
 **Karthick Raja B**  
-Computer Science and Engineering Student
-
+B.E. Computer Science and Engineering  
+Passionate about Software Development, Data Structures, AI, and Web Technologies.
 ---
 
 ## 📜 License
