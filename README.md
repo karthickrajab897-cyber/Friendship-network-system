@@ -1,4 +1,9 @@
 # Friendship Network System | Graph-Based Social Networking Platform
+![Python](https://img.shields.io/badge/Python-3.x-blue)
+![Flask](https://img.shields.io/badge/Flask-Web%20Framework-green)
+![Graph](https://img.shields.io/badge/Data%20Structure-Graph-orange)
+![BFS](https://img.shields.io/badge/Algorithm-BFS-red)
+![DFS](https://img.shields.io/badge/Algorithm-DFS-purple)
 ## 📌 Project Overview
 
 Friendship Network System is an intelligent graph-based social networking platform designed to model and analyze user relationships using Data Structures and Algorithms. The system represents users as nodes and friendships as edges within a graph, enabling efficient management of social connections, mutual friend discovery, and recommendation generation.
